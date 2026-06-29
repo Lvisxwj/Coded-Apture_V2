@@ -1,0 +1,657 @@
+%%
+%% Copyright 2007-2020 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%%
+
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%% SP 2008/03/01
+%%
+%%
+%%
+%% $Id: elsarticle-template-num.tex 190 2020-11-23 11:12:32Z rishi $
+%%
+%%
+\documentclass[preprint,review,12pt]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%%\documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+% newly added packages from MyPaper.tex
+\usepackage{subfigure}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{epstopdf}
+\usepackage[labelsep=period]{caption}
+\usepackage[british]{babel}
+\usepackage{amsmath}      % 基础数学环境
+\usepackage{amssymb}      % 数学符号，包括 \mathbb
+\usepackage{amsfonts}     % 数学字体
+\usepackage{bm}           % 粗体数学符号（可选但推荐）
+\usepackage{url}
+
+\geometry{a4paper, top=25mm, left=20mm, right=20mm, bottom=25mm, headsep=10mm, footskip=12mm}
+\captionsetup{justification=centering,font=normal}
+\captionsetup[figure]{font=small}
+\captionsetup[table]{font=small}
+
+\journal{ISPRS Journal of Photogrammetry and Remote Sensing}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%% \fntext[label3]{}
+
+\title{From Compressive Measurement to Spectral Indices using CNN-Transformer Based on Snapshot Spectral Imaging}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+\author[1]{Zhuo LI}
+\ead{zhuo.li@mail.com}
+
+\author[1]{Ping XU}
+\ead{ping.xu@mail.com}
+
+\author[1]{Yicheng FENG}
+\ead{yicheng.feng@mail.com}
+
+\author[1]{Weijie XIE}
+\ead{weijie.xie@mail.com}
+
+\author[1]{Jingcheng ZHANG \corref{cor1}}
+\ead{jingcheng.zhang@mail.com}
+
+\address[1]{Hangzhou Dianzi University, Hangzhou, China}
+
+\cortext[cor1]{Corresponding author}
+
+\begin{abstract}
+%% Text of abstract
+Hyperspectral Imaging (HSI) technology has gained significant attention due to its wide applications in fields such as agriculture, environmental monitoring, and medicine. However, hyperspectral images face challenges in storage, transmission, and processing efficiency due to issues such as high data dimensionality, information redundancy, and computational complexity. Compressed Aperture Snapshot Spectral Imaging (CASSI) is a technique based on compressed sensing theory that captures both spatial and spectral information in a single snapshot. However, traditional reconstruction methods are time-consuming and require high computational resources. This paper presents a spectral index calculation framework based on the measurement domain, which directly computes the spectral index from CASSI measurement frames without the need for full hyperspectral image reconstruction. To achieve this, we propose a deep learning network that integrates CNN and Transformer modules, leveraging the multi-scale feature extraction capabilities of the UNet model alongside the attention mechanism. This approach significantly enhances both computational efficiency and the accuracy of index prediction. Experimental results show that the proposed method achieves state-of-the-art performance across various tasks, offering a novel technical solution for the application of hyperspectral imaging in precision agriculture.
+
+\end{abstract}
+
+\begin{keyword}
+%% keywords here, in the form: keyword \sep keyword
+CASSI \sep measurement frames \sep spectral indices \sep CNN-Transformer \sep snapshot spectral imaging \sep hyperspectral imaging \sep deep learning \sep precision agriculture
+
+\end{keyword}
+
+\end{frontmatter}
+
+%% \linenumbers
+
+%% main text
+\section{Introduction}
+\label{sec:introduction}
+
+Hyperspectral Imaging (HSI) is an advanced multi-channel remote sensing imaging technology that offers more spectral bands and spatial structure than conventional RGB images, while providing more detailed information on specific spectral wavelengths compared to traditional multispectral imaging. It is widely applied in the field of agriculture. There are three main methods for hyperspectral data acquisition: The point scanning method collects spectral data point by point, with slow scanning speed and the need for high-precision positioning hardware, making it unsuitable for dynamic scenes. The line scanning method captures spectral data one line at a time, which is faster than point scanning but still struggles in dynamic scenes, as rapid movement of objects can result in inaccurate data stitching. The area scanning method involves fixing the view and repeatedly scanning the entire spectral range to obtain a hyperspectral data cube. While this method is slower, it is also prone to image blurring or data inaccuracy in dynamic scenes. Hyperspectral images generate massive amounts of multi-dimensional data, which contain a large amount of redundant and irrelevant information, posing challenges for data storage and transmission \cite{ferrari2013}. The high dimensionality of the data leads to long computation and processing times, making the algorithms for analyzing and processing these images, such as dimensionality reduction methods like Principal Component Analysis (PCA), highly complex. Although PCA can reduce data size, it involves complex matrix operations, which impact real-time applications \cite{palmer2013}. Due to limited acquisition and storage resources, hyperspectral sensors are often installed on resource-constrained platforms such as satellites or drones. These platforms are subject to limitations in power consumption, weight, and storage capacity, which in turn restrict the transmission and storage efficiency of hyperspectral data \cite{nascimento2018}.
+
+In recent years, Compressed Aperture Snapshot Spectral Imaging (CASSI) has emerged as an innovative technology based on compressed sensing theory, proposed by Brady et al. for capturing dynamic scenes \cite{brady2009,wagadarikar2008}. CASSI is designed to reduce the complexity and time overhead of traditional spectral imaging systems. It enables the capture of both spatial and spectral information in a single snapshot without the need for point-by-point or line-by-line scanning, making it particularly suitable for dynamic scene capture. By compressing three-dimensional data into a single two-dimensional measurement frame, CASSI addresses the time-delay issue associated with traditional spectral imaging when capturing dynamic scenes. However, the original index calculation methods require reconstructing the measurement frames back into the original hyperspectral images before calculating vegetation indices based on the reconstructed images. This process, however, demands significant computational resources for hyperspectral image reconstruction, leading to unnecessary computational overhead.
+
+Currently, reconstruction methods can be categorized into two main types. Traditional hyperspectral image reconstruction methods rely on manually designed prior models, such as smoothness priors, sparsity priors, non-local similarity, and low-rank priors, combined with optimization algorithms like TwIST, Split-Bregman, ADMM, and GPSR. These methods iteratively solve for the reconstruction of the target scene's hyperspectral image. While these methods have made progress in some areas by deeply exploring the imaging system and image characteristics, they suffer from long iteration times and the complexity of manually designed prior models, which are difficult to accurately represent the reconstruction problem. As a result, they often yield low reconstruction quality and limited generalization ability. Compared to traditional methods, deep learning-based hyperspectral image reconstruction methods offer stronger real-time performance, generalization ability, and fitting capability. These methods can be primarily categorized into end-to-end network frameworks, plug-and-play (PnP) architectures, and deep unfolding networks. End-to-end frameworks directly reconstruct images from input data using deep learning, with typical approaches such as autoencoder networks and Transformer models. While these methods offer fast reconstruction speeds, they lack interpretability. The PnP architecture integrates pre-trained deep learning networks into an iterative optimization framework, improving reconstruction accuracy and efficiency, but requiring high-quality initial parameters. Deep unfolding networks combine traditional optimization methods with multi-stage network designs, providing interpretability, but at the cost of higher computational overhead, and the information transfer between stages may result in data loss. While these methods achieve significant improvements in accuracy and speed compared to traditional approaches, there remains room for enhancing computational resource efficiency and model adaptability.
+
+Inspired by the idea of directly performing downstream tasks using measurement frames in video SCI (Snapshot Compressive Imaging) reconstruction models, Zhang et al. proposed a measurement-domain-based task-driven framework in 2022 \cite{zhang2022}. This framework enables semantic computer vision tasks to be performed directly in the measurement domain without the need for full video reconstruction. It leverages key information from the measurement frames of the SCI system, extracting descriptive and discriminative features to directly accomplish tasks such as object detection and scene understanding, significantly reducing computational and storage resource consumption.
+
+Similarly, our model aims to calculate various spectral index metrics directly from the measurement frames of hyperspectral images. Given that the two-dimensional measurement frames obtained by the CASSI system almost contain all the useful information of the original scene, it is theoretically feasible to directly compute spectral indices from these measurement frames. The distinction between using hyperspectral data that is first compressed, then reconstructed for spectral index calculation, and using the measurement frames directly for spectral index construction after compression is illustrated in Fig. \ref{fig:fig1}:
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig1.png}
+	\caption{The distinction between different method}
+\label{fig:fig1}
+\end{center}
+\end{figure}
+
+A detailed introduction to CASSI can be found in Section \ref{sec:cassi}, and the reconstruction algorithm is specifically described in Section \ref{sec:related_work}.
+
+Firstly, we have developed a model that integrates CNN and Transformer modules by embedding the CNN-TRM module into the encoder and decoder components of the basic UNet architecture. This results in a CNN\_Transformer-UNet hybrid model, which demonstrates excellent spectral index calculation capabilities and directly enables the generation of spectral indices from measurement frames.
+
+Our contributions are as follows:
+\begin{itemize}
+	\item We propose a novel approach for directly calculating spectral indices in the compressed measurement domain. This method avoids the two-stage process of reconstruction followed by computation used in traditional compression techniques, saving memory while significantly improving computational efficiency.
+	\item On the algorithmic front, we introduce a novel end-to-end Transformer architecture that leverages depthwise separable convolutions.
+	\item Based on the spectral range of hyperspectral data, we can calculate up to 32 spectral indices in a single measurement, with results that outperform current classical methods.
+\end{itemize}
+
+\section{Related work}
+\label{sec:related_work}
+
+\subsection{HSI Reconstruction}
+
+\subsubsection{Traditional Hyperspectral Image Reconstruction Methods}
+
+Traditional hyperspectral image reconstruction methods primarily rely on manually designed prior knowledge, constructing optimization problems based on a deep understanding of the physical model of the imaging system and the image characteristics. These methods typically treat hyperspectral images as signals with sparsity, low rank, and non-local similarity, using regularization models for reconstruction. The following are some representative methods:
+
+\begin{enumerate}
+	\item \textbf{Smooth Priors:} Smooth priors enhance the reconstruction quality by assuming spatial continuity in the image. Wan et al. proposed a method combining Total Variation (TV) and spectral-spatial smooth regularization, using the Alternating Direction Method of Multipliers (ADMM) for fast optimization, significantly improving reconstruction accuracy \cite{wan2023}.
+	\item \textbf{Sparsity Priors:} Sparse priors construct the optimization objective based on the sparsity of the signal. Gelvez et al. combined sparsity and low rank within the same framework, using the Gradient Projection Sparse Reconstruction algorithm (GPSR) to effectively suppress noise and redundancy \cite{sun2022}.
+	\item \textbf{Low-rank Priors:} Low-rank models reconstruct the global structure of hyperspectral images by constraining the tensor rank. Xue et al. introduced a non-local tensor sparsity and low-rank regularization method, combining local similarity and global sparsity of hyperspectral images, significantly improving reconstruction quality \cite{xue2019}.
+\end{enumerate}
+
+Although traditional methods provide an in-depth understanding of the physical model of the imaging system, their main drawback lies in the long iteration time of the optimization process. Moreover, manually designed prior models may struggle to accurately capture image characteristics in complex scenarios, limiting their efficiency and robustness in practical applications \cite{zeng2020}.
+
+\subsubsection{Deep Learning-based Hyperspectral Image Reconstruction Methods}
+
+With the rise of deep learning, deep learning-based hyperspectral image reconstruction methods have demonstrated exceptional performance, particularly in terms of real-time processing, generalization ability, and efficient feature representation. Deep learning-based reconstruction methods can be divided into three categories:
+
+\paragraph{End-to-End Fully Connected Network Framework}
+
+End-to-end models directly reconstruct hyperspectral images from input measurement data through deep learning networks, relying on a data-driven approach that simultaneously learns image priors and data fitting. For example, Miao et al. proposed a two-stage reconstruction model, $\lambda$-Net, which uses adversarial loss and self-attention mechanisms to capture non-local features of the image, significantly improving reconstruction quality \cite{miao2019}. Additionally, Cai et al. designed the MST and CST models based on self-attention mechanisms, effectively capturing the sparsity and spatial modulation information of hyperspectral images, leading to substantial improvements in reconstruction performance \cite{cai2022}.
+
+End-to-end methods have strong fitting capability and computational efficiency, but due to the lack of consideration for the forward model of the imaging system, their interpretability is limited, and their adaptability under complex degradation conditions is weaker.
+
+\paragraph{Plug-and-Play (PnP) Architecture}
+
+The Plug-and-Play (PnP) method integrates pre-trained deep learning networks into traditional iterative optimization frameworks, using deep networks to solve prior relationships, typically through iterative proximal gradient descent. Yuan et al. proposed a PnP method based on the GAP framework \cite{yuan2020}, while Zheng et al. designed a PnP method incorporating a denoising network to enhance reconstruction performance. The PnP method leverages deep learning to improve reconstruction accuracy and offers strong interpretability. However, its optimization framework still has relatively high time complexity \cite{zheng2023}.
+
+\paragraph{Deep Unfolding Networks}
+
+Deep unfolding networks combine traditional optimization methods with deep learning, employing stage-wise unfolding optimization algorithms where each stage includes both data processing steps and deep denoising modules. For example, Wang et al. proposed GAP-Net, which is based on traditional gradient descent optimization, combining low-rank information with deep learning frameworks, significantly improving reconstruction performance \cite{wang2023}. Additionally, Sun et al. designed ITU-Net, which introduces cross-stage feature propagation to enhance feature representation capabilities, achieving state-of-the-art performance in hyperspectral image reconstruction tasks \cite{sun2024}.
+
+Traditional optimization methods and deep learning approaches each have their own advantages and disadvantages in hyperspectral image reconstruction. Traditional methods offer strong theoretical interpretability, but they are computationally time-consuming and lack flexibility. Deep learning methods, on the other hand, have the advantage in reconstruction quality and computational efficiency, but their interpretability and adaptability to different systems still need improvement.
+
+In recent years, Vision Transformer (ViT), as an emerging deep learning model, has shown great potential in image reconstruction tasks \cite{dosovitskiy2020}. The advantage of ViT lies in its powerful non-local modeling capabilities, which can effectively capture global features in images. Compared to traditional convolutional models, ViT is better suited for handling high-dimensional, sparse, and long-range dependent image data.
+
+Vision Transformer has global perception ability, and the Transformer, through the multi-head self-attention mechanism, can simultaneously focus on different regions of the input image and model the long-range dependencies between them. This characteristic is particularly suitable for the integration of spatial and spectral information in hyperspectral imaging (HSI). Moreover, ViT offers flexible structural adaptability. Unlike Convolutional Neural Networks (CNNs), ViT does not rely on fixed convolution kernel sizes, making it flexible in processing multi-scale features and adaptable to a variety of tasks and data types.
+
+The application of Vision Transformer in hyperspectral image reconstruction is as follows:
+
+\begin{enumerate}
+	\item \textbf{Multi-Scale Feature Capture} Studies have shown that Transformer models combined with local convolution modules (e.g., MST and CST) can effectively capture spatial sparsity and spectral correlation in hyperspectral image reconstruction tasks. These models use the self-attention mechanism to model interactions in the spatial dimension while extracting local features through convolutional layers, achieving more accurate reconstruction \cite{cai2022}.
+	\item \textbf{End-to-End Reconstruction Framework} End-to-end models based on ViT directly recover hyperspectral images from the measurement frames using deep learning, avoiding complex preprocessing steps. These models rely on the global perception ability of Transformer and utilize adversarial loss to improve reconstruction quality \cite{miao2019}.
+	\item \textbf{Combination with Other Methods} In recent research, ViT is often combined with other modules (such as Convolutional Neural Networks and Attention Mechanisms) to form hybrid models. For example, Uformer introduces Transformer into image denoising and reconstruction, effectively modeling global features via the self-attention mechanism, while combining skip connections and local feature extraction to achieve more efficient feature representation.
+\end{enumerate}
+
+The ViT model offers stronger generalization ability, making it suitable for complex scenarios and reducing reliance on prior knowledge. It can adaptively learn the characteristics of different data distributions. The introduction of Vision Transformer provides new possibilities for image reconstruction, particularly in multi-dimensional data processing tasks such as hyperspectral image reconstruction, where its global perception and multi-scale feature capture capabilities offer significant advantages. However, Transformer models require large amounts of training data to avoid overfitting, and their computational complexity is high, placing significant demands on hardware resources. Future research could further explore how to optimize the computational efficiency of ViT and combine it with other deep learning frameworks to meet the needs of real-time applications.
+
+\subsection{Compression Tasks}
+\label{sec:compression_tasks}
+
+Compressive Tasking refers to performing specific computational tasks directly on compressed data without the need for full data reconstruction. It combines the principles of Compressive Sensing and computational task processing to achieve efficient and low-bandwidth data handling \cite{zhang2022}. In traditional data processing workflows, data is typically first acquired and transmitted, then processed or analyzed. However, the goal of compressive tasking is to integrate compression and processing steps, allowing tasks such as target recognition, feature extraction, or signal reconstruction to be performed directly on compressed data. This approach significantly reduces the amount of data that needs to be processed or transmitted, improving efficiency and reducing resource requirements. Compressive tasking has been applied in fields such as image processing, signal processing, and wireless communication. It leverages the inherent sparsity or structure within the data to efficiently and accurately execute tasks on compressed representations. By combining the advantages of compressive sensing and computational task processing, compressive tasking provides a promising framework for efficiently handling large-scale data, particularly in scenarios with limited bandwidth, storage, or computational resources.
+
+In recent years, task-driven methods combined with compressive sensing technology have shown great potential in spectral data analysis. These methods perform tasks such as target detection or feature extraction directly in the compressed data domain, avoiding data redundancy and computational waste in traditional reconstruction processes. Yuan Xin et al. enhanced the performance of computational imaging systems by integrating snapshot compressive imaging (SCI) with semantic computer vision (SCV) tasks.
+
+\subsection{Spectral Index Calculation}
+\label{sec:spectral_index}
+
+Spectral indices are effective tools for quantitatively assessing vegetation, biophysical parameters, and environmental features by combining different bands of remote sensing data. These indices enhance specific spectral features while suppressing the interference of non-target information, and are widely used in vegetation monitoring, agricultural yield estimation, and ecological environmental assessment.
+
+In vegetation index research, the Normalized Difference Vegetation Index (NDVI) is one of the most commonly used indicators for assessing vegetation cover and growth conditions. However, NDVI can be influenced by soil background and atmospheric conditions. To address this, the Soil-Adjusted Vegetation Index (SAVI) was proposed to reduce the impact of soil background \cite{huete1988}. In agricultural applications, spectral indices are widely used for crop yield estimation and physiological parameter inversion. Studies have shown that combining spectral index selection methods with statistical regression algorithms can improve the accuracy of rice yield estimation \cite{wang2021}.
+
+In this study, we use 32 spectral indices extensively validated in prior research. These indices encompass vegetation growth assessment, chlorophyll content measurement, and environmental stress detection, forming a comprehensive system for vegetation monitoring. A detailed list of these indices, including their calculation formulas and applications, is provided in the appendix.
+
+\subsection{CASSI System}
+\label{sec:cassi}
+
+The CASSI system is a snapshot compressive spectral imaging technology based on compressed sensing theory, which encodes spatial and spectral information into two-dimensional measurement frames through optical modulation. Compared to traditional spectral imaging systems, CASSI has significant advantages in terms of real-time performance and computational efficiency.
+
+\subsubsection{Principle of CASSI}
+
+The core of the CASSI system is the spectral dispersion and spatial modulation of the target scene. The process is as follows:
+
+\begin{enumerate}
+	\item \textbf{Spatial Modulation:} The incident light first passes through a spatial modulation mask, which selectively modulates different spatial positions. This step converts spatial information into encoded form.
+	\item \textbf{Spectral Dispersion:} The modulated light then passes through a dispersive element (such as a prism), which performs spatial offsets on different wavelengths of light. This offset enables the compressed representation of spectral information.
+	\item \textbf{Measurement:} Finally, the dispersed light is captured by a detector (such as a CCD or CMOS camera), forming a two-dimensional measurement frame that contains both spatial and spectral information.
+\end{enumerate}
+
+The mathematical model of the measurement process can be expressed as:
+\begin{equation}
+Y = \Phi X + N
+\end{equation}
+where $Y$ is the two-dimensional measurement frame, $X$ is the three-dimensional hyperspectral data cube, $\Phi$ is the encoding matrix (determined by the mask and dispersive element), and $N$ is noise.
+
+\subsubsection{Types of CASSI Systems}
+
+CASSI systems can be classified based on the number of dispersive elements and detectors used:
+
+\begin{enumerate}
+	\item \textbf{Single-Disperser CASSI (SD-CASSI):} Uses a single dispersive element and a single detector. This system is simple and cost-effective but has lower spectral resolution.
+	\item \textbf{Dual-Disperser CASSI (DD-CASSI):} Uses two dispersive elements and two detectors, capturing measurement frames from different perspectives, thereby improving reconstruction quality and spectral resolution.
+	\item \textbf{Rotating CASSI:} Introduces a rotating element in the modulation or dispersive stage, increasing the encoded information and improving system flexibility.
+\end{enumerate}
+
+In this study, we adopt the SD-CASSI system to generate measurement frames due to its simpler structure and lower hardware requirements, making it more suitable for practical applications.
+
+\subsubsection{Advantages of CASSI}
+
+The CASSI system has the following advantages:
+
+\begin{enumerate}
+	\item \textbf{Real-time capture:} By capturing spatial and spectral information in a single snapshot, CASSI avoids the scanning time delays of traditional spectral imaging systems, making it particularly suitable for dynamic scene acquisition.
+	\item \textbf{Compression efficiency:} Based on compressed sensing theory, CASSI can achieve high-quality reconstruction with fewer measurements, significantly reducing data storage and transmission requirements.
+	\item \textbf{Hardware simplicity:} Compared to traditional push-broom or full-field spectral imaging systems, CASSI has a simpler optical structure and lower hardware costs.
+\end{enumerate}
+
+\section{Method}
+\label{sec:method}
+
+In this section, we first describe the overall pipeline and architecture of the Convolutional-Spectral-wise Transformer (CnS-T) used for vegetation index calculation. Then, we further discuss the detailed construction of its constituent module, Convolutional-Spectral-wise Attention Block (CSAB), which is a fundamental component of CnS-T. Finally, we discuss how the model for vegetation indices is constructed directly from the measurement frames.
+
+\subsection{Overall Architecture}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig4.png}
+	\caption{The overall Architecture}
+\label{fig:fig3}
+\end{center}
+\end{figure}
+
+The overall architecture is presented in a U-shape, consisting of an encoder and a decoder, with Skip Connections from the Unet architecture. The encoder includes down-sampling and the CSAB, while the decoder is composed of up-sampling and the CSAB. And CSAB is introduced between the encoder and decoder as a transition.
+
+The encoder consists of several encoder stages. In each encoder stage, the feature map first passes through two CSABs and then undergoes a down-sampling layer. In the attention block, the input and output feature maps have the same size, represented as $X \in \mathbb{R}^{C \times H \times W}$. Each down-sampling layer includes two $3 \times 3$ convolution operations without padding, followed by a ReLU activation function, and finally a $2 \times 2$ max pooling operation with a stride of 2. After each down-sampling, the height and width of the feature map are halved, while the number of feature channels is doubled. For example, the input feature map $X \in \mathbb{R}^{C \times H \times W}$ undergoes down-sampling to produce an output of $X \in \mathbb{R}^{2C \times \frac{H}{2} \times \frac{W}{2}}$. Given the input feature map $X_0 \in \mathbb{R}^{C \times H \times W}$, the feature map produced at the k-th stage will be $X_1 \in \mathbb{R}^{2^k C \times \frac{H}{2^k} \times \frac{W}{2^k}}$.
+
+Between the encoder and decoder, we insert CSAB as a transition layer. This transition layer is essentially composed of two attention blocks, which can establish a global perception of the input image at the deepest layer of the network, while extracting rich contextual features and effectively integrating multi-scale features.
+
+Similarly, the decoder consists of several decoder stages. In each decoder stage, the feature map first passes through an up-sampling layer and then through two CSABs. The feature map input to the up-sampling layer is the output from the previous decoder stage or the intermediate transition layer; simultaneously, the cropped feature map from the corresponding position in the encoder is also input to the up-sampling layer via a skip connection, forming a concatenation. In each up-sampling layer, the height and width of the feature map are doubled, while the number of feature channels is halved. After up-sampling, the feature map is passed through the CSAB to learn the mapping for index calculation.
+
+Overall, the decoder initially receives the feature map $X_1 \in \mathbb{R}^{2^k C \times \frac{H}{2^k} \times \frac{W}{2^k}}$, and after passing through k decoder stages, the decoder outputs $X_{out} \in \mathbb{R}^{C \times H \times W}$. After processing through all decoder stages, the vegetation index is output.
+
+The measurement frames obtained by the SD-CASSI system cannot be directly input into the encoder. In the data initialization phase, we need to apply a scale transformation to the measurement frames to make them compatible with the encoder's input requirements. Due to the existence of dispersion shift, the measurement frame $X \in \mathbb{R}^{H \times (W + d(N-1))}$ has unequal dimensions, with several overlapping regions. We perform a simple segmentation and reconstruction, resizing it to $X \in \mathbb{R}^{C \times H \times W}$.
+
+\subsection{Convolutional-Spectral-wise Attention Block}
+
+CSAB consists of two parts: the attention part and the forward part. In the attention part, the feature map is first normalized using LayerNorm, then processed by the Convolutional-Spectral-wise Multi-head Self-Attention (CS-MSA), and finally the input feature map is added to the output through a skip connection. In the forward part, the feature map is first normalized with LayerNorm, then processed by the forward module, and finally, the feature map is fused via a skip connection. Based on this design, the input and output feature maps of the attention block have the same size.
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig5.png}
+	\caption{Convolutional-Spectral-wise Multi-head Self-Attention}
+\label{fig:fig5}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig6.png}
+	\caption{Convolutional projection}
+\label{fig:fig6}
+\end{center}
+\end{figure}
+
+Our task is to map the measurement frames to vegetation indices. We leverage the strong representation capabilities of Transformer in capturing long-range dependencies and its excellent performance across various tasks, while also taking into account the outstanding performance of CNNs on small-scale datasets and their ability to integrate local features and contextual information. We aim to explore the collaborative effect of Transformer and CNN modules in this new domain.
+
+HSI has the characteristics of spatial sparsity and spectral correlation. When processing related tasks, capturing interactions along the spatial dimension is often more cost-effective than modeling correlations along the spectral dimension. Based on this, we treat each spectral feature map as a token and perform self-attention calculations along the spectral dimension, where each spectral dimension is represented as $C \in \mathbb{R}^{H \times W}$. All input spectra are integrated to obtain the input $X_{in} \in \mathbb{R}^{C \times H \times W}$.
+
+Based on the excellent ability of convolution to handle local features and contextual information, we use convolutional projections to replace the original linear projections, aiming to enhance the accuracy of vegetation index calculation and improve the expressiveness of the mapping model. We adopt depthwise separable convolution for the projection, which performs grouped convolution along the feature dimension. It first applies independent depthwise convolutions to each channel, then aggregates all channels using a $1 \times 1$ convolution before the output. The steps are shown in Figure \ref{fig:fig6}.
+
+In simple terms, the input $X_{in} \in \mathbb{R}^{C \times H \times W}$ is passed through three depthwise separable convolutions (kernel = $s \times s$) and other operations to map to the query $Q \in \mathbb{R}^{HW \times C}$, key $K \in \mathbb{R}^{HW \times C}$, and value $V \in \mathbb{R}^{HW \times C}$. The projection formula is as follows:
+
+\begin{equation}
+K / Q / V = \text{BatchNorm2d}(\text{Conv2d}(X))
+\end{equation}
+
+Where $\text{Conv2d}(\cdot)$ represents a convolution operation with a kernel size of 3, padding of 1, and a stride of 1. BatchNorm is applied to accelerate network convergence and provide some regularization effect. Subsequently, we perform the corresponding self-attention calculation. We set the number of attention heads as N and the dimension of each attention head as M. The Q, K and V are split into N heads, $Q \in \mathbb{R}^{N \times HW \times M}$, $K \in \mathbb{R}^{N \times HW \times M}$ and $V \in \mathbb{R}^{N \times HW \times M}$. Only the attention calculation of one head is shown in Figure \ref{fig:fig5}. The attention of each head $ATT_j \in \mathbb{R}^{M \times HW}$ is computed as follows:
+
+\begin{equation}
+ATT_j = V_j @ \text{SoftMax}(\sigma_j K_j^T Q_j)
+\end{equation}
+
+Where $K_j^T$ represents the transpose matrix of $K_j$, $@$ denotes matrix multiplication, and $\sigma_j$ is an attention weight adjustment factor, with the scaling factor being automatically adjusted during training. Attention weights are normalized via softmax, and then matrix multiplication is performed with $V_j$ to obtain the sub-attention for a single head. Afterward, we concatenate the attention from each head, resulting in $A \in \mathbb{R}^{N \times M \times HW}$. After reshaping and linear projection, this serves as part of the final output, which includes position information. The specific calculation formula is as follows:
+
+\begin{equation}
+\text{CS-MSA}(X) = AW + f_p(V)
+\end{equation}
+
+Where $W \in \mathbb{R}^{NM \times C}$ serves to project the multi-head sub-attention to the required size, and $f_p(\cdot)$ is the function for position information. This function first performs a linear projection on V, followed by two $3 \times 3$ convolution layers and a GELU activation layer, encoding the positional information for different spectral channels. Through this process, the attention and positional information are combined, resulting in the final output of the module $X_{out} \in \mathbb{R}^{C \times H \times W}$.
+
+\subsection{Feed-Forward Network}
+
+The forward propagation module is primarily composed of a sequentially connected neural network, consisting of five operations as shown in Figure 4(c). The first operation is a $1 \times 1$ convolution layer, which takes an input channel of dim and expands it to an output channel of $\text{dim} \times \text{mult}$. This layer serves to increase the data's channel dimension without altering the height and width of the feature map. Next, a GELU activation function is applied to introduce non-linearity, enabling the network to learn more complex patterns. Then, a $3 \times 3$ depthwise separable convolution layer follows, with both input and output channels being $\text{dim} \times \text{mult}$. This layer reduces computational cost through grouped convolutions and effectively captures spatial information. Another GELU activation function is applied to further enhance the network's non-linear expressive power. Finally, a $1 \times 1$ convolution layer is used to restore the channel size from $\text{dim} \times \text{mult}$ back to dim, ensuring that the output channel dimension matches the input.
+
+\section{Experiment}
+\label{sec:experiment}
+
+\subsection{Experimental Setup}
+
+The experiment adopts a hybrid network architecture combining CNN and Transformer, based on an improved U-Net framework, while embedding multi-head self-attention modules and convolutional layers to efficiently predict vegetation spectral indices from hyperspectral measurement frames. The AdamW optimizer \cite{loshchilov2019} is used, with momentum parameters set to (0.9, 0.999). The weight decay strategy significantly reduces the risk of overfitting and improves model training stability. The initial learning rate is set to $1 \times 10^{-3}$, with a cosine decay strategy gradually reducing it to $1 \times 10^{-6}$. To address the issue of neuron deactivation caused by negative inputs, the Leaky ReLU activation function \cite{xu2020} is used, further enhancing the model's robustness and learning capability. During training, the window size of the Transformer module is fixed at $8 \times 8$, with the default number of layers in the U-Net encoder/decoder set to 4, and the batch size set to 16. The private dataset was trained for 200 epochs, while the public dataset was trained for 100 epochs. All experiments were conducted on a single NVIDIA 3090 Ti GPU cluster with 24GB of VRAM.
+
+To avoid model overfitting, several data augmentation strategies are introduced, including random horizontal flipping, rotations (90°, 180°, 270°), random cropping, and brightness adjustment. Additionally, to address the high-dimensional nature of hyperspectral data, random noise is added in the spectral dimension and spectral smoothing is applied to simulate different sensor environments, enhancing the model's generalization ability. The private dataset consists of 250 samples, with 200 used for training and 50 for testing. The public dataset is split into training and testing samples at an 80\%:20\% ratio.
+
+We have developed a fused loss calculation method that combines Charbonnier loss, L1 loss, and SSIM loss. In our evaluation function, the values of these three losses are first computed individually, then fused by summing them, and finally, their sum is used for gradient descent.
+\begin{equation}
+\text{Whole Loss} = \alpha \times \text{Charbonnier}_{\text{Loss}} + \beta \times L1_{\text{Loss}} + \text{SSIM}_{\text{Loss}}
+\end{equation}
+Where $\alpha$ and $\beta$ are used to adjust the weight of the loss. Charbonnier Loss is a loss function commonly used in optimization problems, particularly in tasks such as image denoising, image super-resolution, and optical flow estimation. It is a smooth version of the L1 loss function, which avoids the non-differentiability issue at zero, while maintaining robustness to outliers. The formula is as follows:
+\begin{equation}
+L(x) = \sqrt{x^2 + \epsilon^2}
+\end{equation}
+Where $x$ represents the difference between the predicted and true values, and $\epsilon$ is a very small number.
+
+L1 Loss is a commonly used loss function that measures the model's performance by calculating the absolute difference between the predicted and true values. The formula is as follows:
+\begin{equation}
+L(x) = |y_x - \hat{y}_x|
+\end{equation}
+Where $y_x$ represents the predicted value, and $\hat{y}_x$ represents the true value.
+
+SSIM (Structural Similarity Index) takes into account luminance, contrast, and structure components to measure the structural similarity between two images. The formula is as follows:
+\begin{equation}
+l(x, y) = \frac{2\mu_x\mu_y + c_1}{\mu_x^2 + \mu_y^2 + c_1}
+\end{equation}
+\begin{equation}
+c(x, y) = \frac{2\sigma_x\sigma_y + c_2}{\sigma_x^2 + \sigma_y^2 + c_2}
+\end{equation}
+\begin{equation}
+s(x, y) = \frac{\sigma_{xy} + c_3}{\sigma_x\sigma_y + c_3}
+\end{equation}
+Summing the above three equations gives the SSIM loss function:
+\begin{equation}
+\text{SSIM}(x, y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2 + \mu_y^2 + c_1)(\sigma_x^2 + \sigma_y^2 + c_2)}
+\end{equation}
+Where $c_1$, $c_2$ and $c_3$ are constants that are set.
+
+\subsection{Experimental results}
+
+In this section, we present the experimental results of our proposed CNN-Transformer model (CnS-T) on both public and private datasets. For each dataset, we first report the overall quantitative performance and then provide qualitative comparisons on selected $256 \times 256$ image patches. In both cases, the performance of the proposed CnS-T model is compared against a baseline UNet and a UNet variant enhanced with a spectral-dimension Transformer module (S-T).
+
+\subsubsection{Experimental results of public datasets}
+
+\paragraph{Overall Performance}
+
+For the public datasets, measurement frames obtained from the SD-CASSI system were directly used for spectral index prediction. On the XiongAn dataset, our CnS-T model achieved a Charbonnier loss of \textbf{0.03231}, L1 loss of \textbf{0.02037}, and an SSIM loss of \textbf{0.173} (corresponding to an SSIM of \textbf{0.827}) with a PSNR of \textbf{26.97} dB. On the Chikusei dataset, the model reported even lower losses---a Charbonnier loss of \textbf{0.02013}, L1 loss of \textbf{0.02133}, and SSIM loss of \textbf{0.107} (SSIM of \textbf{0.893})---with a PSNR of \textbf{28.61} dB. These results indicate that the CnS-T model robustly handles the complex spectral correlations inherent in hyperspectral data.
+
+The quantitative losses for the two public datasets are summarized in the tables below:
+
+\begin{table}[h]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|c|}\hline
+			Model & Charbonnier loss & L1 loss & SSIM loss & SSIM$\uparrow$ & PSNR$\downarrow$ \\\hline
+			UNet & 0.04320 & 0.04290 & 0.344 & 0.655 & 24.57 $\uparrow$ \\\hline
+			S-T & 0.04297 & 0.04289 & 0.342 & 0.657 & 23.47 $\uparrow$ \\\hline
+			CnS-T & \textbf{0.03231} & \textbf{0.02037} & \textbf{0.173} & \textbf{0.827} & \textbf{26.79 $\uparrow$} \\\hline
+		\end{tabular}
+	\caption{Performance on the XiongAn Dataset (100 Epochs)}
+\label{tab:xiongan}
+\end{table}
+
+\begin{table}[h]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|c|}\hline
+			Model & Charbonnier loss & L1 loss & SSIM loss & SSIM$\uparrow$ & PSNR$\downarrow$ \\\hline
+			UNet & 0.02751 & 0.02733 & 0.174 & 0.825 & 26.22 $\uparrow$ \\\hline
+			S-T & 0.02851 & 0.02833 & 0.180 & 0.819 & 26.32 $\uparrow$ \\\hline
+			CnS-T & \textbf{0.02013} & \textbf{0.02133} & \textbf{0.107} & \textbf{0.893} & \textbf{28.61 $\uparrow$} \\\hline
+		\end{tabular}
+	\caption{Performance on the Chikusei Dataset (200 Epochs)}
+\label{tab:chikusei}
+\end{table}
+
+\paragraph{Spectral Index Domain Quantitative Analysis}
+
+In addition to the overall performance, we analyzed the prediction accuracy and stability across spectral bands by plotting the comparison curves of predicted versus ground-truth average spectral indices. These curves demonstrate that our CnS-T model achieves minimal error across all 32 indices, especially for complex indices. As shown below:
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig7.png}
+	\caption{XiongAn Dataset - Predicted vs. Ground-Truth Spectral Index Averages}
+\label{fig:fig7}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig8.png}
+	\caption{Chikusei Dataset - Predicted vs. Ground-Truth Spectral Index Averages}
+\label{fig:fig8}
+\end{center}
+\end{figure}
+
+\paragraph{Selected Patch Comparisons}
+
+\paragraph{Qualitative Analysis of Spatial Domain on Selected Patches}
+
+To further illustrate the performance differences, $256 \times 256$ patches were extracted from each public dataset. Qualitative analysis in the spatial domain shows that the CnS-T model not only preserves spatial structure but also maintains a closer match to the original spectral index values compared to both the UNet and the S-T models. In addition, the comparison curves of predicted versus true index averages across spectral bands consistently demonstrate that our model exhibits minimal prediction error, especially for complex indices. By embedding convolutional operations alongside multi-head self-attention, the CnS-T model effectively captures both local details and long-range dependencies, leading to superior overall performance.
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig9.png}
+	\caption{Chikusei Dataset - Spatial Domain Comparison}
+\label{fig:fig9}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig10.png}
+	\caption{XiongAn Dataset - Spatial Domain Comparison}
+\label{fig:fig10}
+\end{center}
+\end{figure}
+
+\paragraph{Spectral index domain quantitative analysis}
+
+In addition, from the public datasets, three $256 \times 256$ regions were extracted to compare the differences between the spectral indices predicted by the three methods and the original ground-truth indices. This detailed comparison further demonstrates the accuracy and robustness of our proposed model, as illustrated in the figure below.
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig11.png}
+	\caption{Chikusei Dataset - Quantitative Analysis on Selected Patches.}
+\label{fig:fig11}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig12.png}
+	\caption{XiongAn Dataset - Quantitative Analysis on Selected Patches.}
+\label{fig:fig12}
+\end{center}
+\end{figure}
+
+\subsubsection{Experimental results of private datasets}
+
+\paragraph{Overall Performance}
+
+For the private dataset, our CnS-T model achieved a Charbonnier loss of \textbf{0.02024}, L1 loss of \textbf{0.02063}, and SSIM loss of \textbf{0.082} (SSIM of \textbf{0.918}), with a PSNR of \textbf{30.27} dB. These results again demonstrate the model's robust performance in handling spectral index prediction tasks. Table \ref{tab:private} summarizes the comparison with baseline models.
+
+\begin{table}[h]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|c|}\hline
+			Model & Charbonnier loss & L1 loss & SSIM loss & SSIM$\uparrow$ & PSNR$\downarrow$ \\\hline
+			UNet & 0.02780 & 0.02747 & 0.132 & 0.867 & 27.65 $\uparrow$ \\\hline
+			S-T & 0.02678 & 0.02645 & 0.121 & 0.878 & 28.04 $\uparrow$ \\\hline
+			CnS-T & \textbf{0.02024} & \textbf{0.02063} & \textbf{0.082} & \textbf{0.918} & \textbf{30.27 $\uparrow$} \\\hline
+		\end{tabular}
+	\caption{Performance on the Private Dataset (200 Epochs)}
+\label{tab:private}
+\end{table}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig13.png}
+	\caption{Private Dataset - Spatial Domain Comparison}
+\label{fig:fig13}
+\end{center}
+\end{figure}
+
+\paragraph{Spectral index domain quantitative analysis}
+
+Similar to the public datasets, the comparison curves of the predicted versus ground-truth spectral index averages demonstrate that the CnS-T model consistently achieves lower prediction errors across the 32 indices.
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig14.png}
+	\caption{Private Dataset - Predicted vs. Ground-Truth Spectral Index Averages}
+\label{fig:fig14}
+\end{center}
+\end{figure}
+
+\subsubsection{Selected Patch Comparisons}
+
+Similar to the public datasets. For detailed analysis, several $256 \times 256$ patches were extracted from the private dataset.
+
+\paragraph{Qualitative Analysis of Spatial Domain}
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig15.png}
+	\caption{Private Dataset - Spatial Domain Comparison}
+\label{fig:fig15}
+\end{center}
+\end{figure}
+
+The upper-left sub-image shows the RGB representation of a selected patch, while the lower-left panel displays the 32 spectral indices predicted by each model. The right-hand panel provides a qualitative spatial analysis, clearly indicating that the CnS-T model best preserves both the spectral and spatial details.
+
+\paragraph{Spectral index domain quantitative analysis}
+
+Furthermore, from private dataset, three $256 \times 256$ regions were extracted to compare the differences between the spectral indices predicted by the three methods and the original ground-truth indices. This detailed comparison further demonstrates the accuracy and robustness of our proposed model, as illustrated in the figure below.
+
+\begin{figure}[ht!]
+\begin{center}
+		\includegraphics[width=1.0\columnwidth]{figures/fig16.png}
+	\caption{Private Dataset - Quantitative Analysis on Selected Patches.}
+\label{fig:fig16}
+\end{center}
+\end{figure}
+
+Three $256 \times 256$ regions (labeled a, b, and c) were chosen from the full image. The upper-left pannel presents the overall RGB image, while the other panels show comparisons of the 32 spectral indices predicted by the three models against the original indices. The CnS-T model demonstrates a consistent advantage in prediction accuracy across all selected regions.
+
+In summary:
+
+The experimental results demonstrate that the improved CNN-Transformer (CnS-T) model achieves significant advantages across multiple metrics. Compared to the traditional reconstruction-computation paradigm, the approach of performing tasks directly in the measurement domain substantially reduces computational resource requirements while maintaining a good balance between performance and resource usage. Moreover, the model exhibits high generalization capabilities, adapting well to complex band combinations and diverse scene requirements. This method not only streamlines hyperspectral data processing but also provides a feasible pathway for efficient task processing in resource-constrained scenarios. Future research can further explore multi-source data fusion and cross-domain applications to enhance the model's versatility.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper proposes a novel method for calculating plant spectral indices based on the measurement domain, by combining the compressed sensing characteristics of the CASSI system with the powerful nonlinear modeling capabilities of deep learning. Compared to traditional methods, this study avoids full reconstruction of hyperspectral images and directly uses measurement frames for index calculation, significantly reducing computational overhead and improving real-time performance. Experimental results validate the method's outstanding performance in index calculation tasks, achieving high-precision predictions and demonstrating strong robustness and adaptability in resource-constrained scenarios.
+
+In future work, we plan to further optimize the model structure and reduce the parameter size to accommodate a broader range of hardware platforms. Additionally, extending the direct measurement-domain computation framework to more remote sensing tasks and interdisciplinary fields, such as environmental monitoring and medical diagnosis, will be an important research direction. This study provides both a theoretical foundation and practical reference for the efficient application of hyperspectral technology, and holds significant implications for the sustainable development of fields such as precision agriculture and ecological monitoring.
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%% If you have bibdatabase file and want bibtex to generate the
+%% bibitems, please use
+%%
+\bibliographystyle{elsarticle-num}
+\bibliography{ref}
+
+%% else use the following coding to input the bibitems directly in the
+%% TeX file.
+
+% \begin{thebibliography}{00}
+
+% %% \bibitem{label}
+% %% Text of bibliographic item
+
+% \bibitem{}
+
+% \end{thebibliography}
+
+%% References copied from MyPaper.tex for reference
+% Yuan Q, Shen H, Li T, et al. Deep learning in environmental remote sensing: Achievements and challenges[J]. Remote Sensing of Environment, 2020, 241: 111716.
+% Ma X, Wang Q, Tong X. A spectral grouping-based deep learning model for haze removal of hyperspectral images[J]. ISPRS Journal of Photogrammetry and Remote Sensing, 2022, 188: 177-189.
+% Xu L, Cai F, Hu Y, et al. Using deep learning algorithms to perform accurate spectral classification[J]. Optik, 2021, 231: 166423.
+% Pullanagari R R, Dehghan-Shoar M, Yule I J, et al. Field spectroscopy of canopy nitrogen concentration in temperate grasslands using a convolutional neural network[J]. Remote Sensing of Environment, 2021, 257: 112353.
+% Darvishzadeh, R., Atzberger, C., Skidmore, A., & Schlerf, M., 2010. Retrieval of vegetation biochemicals using a radiative transfer model and hyperspectral data. ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, 38, pp. 171-175.
+% Haboudanea, D., Millera, J., Tremblayc, N., Zarco-Tejadad, P., & Dextrazec, L., 2002. Integrated narrow-band vegetation indices for prediction of crop chlorophyll content for application to precision agriculture. Remote Sensing of Environment, 81, pp. 416-426. https://doi.org/10.1016/S0034-4257(02)00018-4.
+% Shi, S., Shi, Z., Sun, Z., Gong, W., Xu, L., Chen, B., Qu, F., & Tang, X., 2023. Potentiality of ultraspectral sensor in biophysical and biochemical vegetation parameter inversion. International Journal of Remote Sensing, 44, pp. 7187 - 7210. https://doi.org/10.1080/01431161.2023.2283903.
+% Du, L., Jin, Z., Chen, B., Chen, B., Gao, W., Yang, J., Shi, S., Song, S., Wang, M., Gong, W., & Wang, W., 2021. Application of Hyperspectral LiDAR on 3-D Chlorophyll-Nitrogen Mapping of Rohdea Japonica in Laboratory. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 14, pp. 9667-9679. https://doi.org/10.1109/JSTARS.2021.3111295.
+% Dosovitskiy, A. (2020). An image is worth 16x16 words: Transformers for image recognition at scale. arXiv preprint arXiv:2010.11929.
+% Wan, X., Li, D., Lv, Y., Kong, F., & Wang, Q., 2023. Hyperspectral image reconstruction based on low-rank coefficient tensor and global prior. International Journal of Remote Sensing, 44, pp. 4058 - 4085. https://doi.org/10.1080/01431161.2023.2229497.
+% Sun, H., Liu, M., Zheng, K., Yang, D., Li, J., & Gao, L., 2022. Hyperspectral Image Denoising via Low-Rank Representation and CNN Denoiser. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 15, pp. 716-728. https://doi.org/10.1109/jstars.2021.3138564.
+% Xue, J., Zhao, Y., Liao, W., & Chan, J., 2019. Nonlocal Tensor Sparse Representation and Low-Rank Regularization for Hyperspectral Image Compressive Sensing Reconstruction. Remote. Sens., 11, pp. 193. https://doi.org/10.3390/rs11020193.
+% Zeng, H., Xie, X., Cui, H., Zhao, Y., & Ning, J., 2020. Hyperspectral image restoration via CNN denoiser prior regularized low-rank tensor recovery. Comput. Vis. Image Underst., 197-198, pp. 103004. https://doi.org/10.1016/j.cviu.2020.103004.
+% Liu R, Li S, Hou C. An end-to-end multi-scale residual reconstruction network for image compressive sensing[C]//2019 IEEE International Conference on Image Processing (ICIP). IEEE, 2019: 2070-2074.
+% Yuan X, Liu Y, Suo J, et al. Plug-and-play algorithms for large-scale snapshot compressive imaging[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020: 1447-1457.
+% Zheng S, Zhu M, Chen M. Hybrid Multi-Dimensional Attention U-Net for Hyperspectral Snapshot Compressive Imaging Reconstruction[J]. Entropy, 2023, 25(4): 649.
+% Zhang Z, Zhang B, Yuan X, et al. From compressive sampling to compressive tasking: Retrieving semantics in compressed domain with low bandwidth[J]. PhotoniX, 2022, 3(1): 1-22.
+% Wang, J., Wang, S., Liu, W., Zheng, Z., & Wang, X., 2023. A Simple Adaptive Unfolding Network for Hyperspectral Image Reconstruction. ArXiv, abs/2301.10208. https://doi.org/10.48550/arXiv.2301.10208.
+% Sun, J., Chen, B., Lu, R., Cheng, Z., Qu, C., & Yuan, X., 2024. Advancing Hyperspectral and Multispectral Image Fusion: An Information-Aware Transformer-Based Unfolding Network.. IEEE transactions on neural networks and learning systems, PP. https://doi.org/10.1109/TNNLS.2024.3400809.
+% Gehm, M. E., John, R., Brady, D. J., Willett, R. M., & Schulz, T. J. (2007). Single-shot compressive spectral imaging with a dual-disperser architecture. Optics express, 15(21), 14013-14027.
+% Wagadarikar, A., John, R., Willett, R., & Brady, D. (2008). Single disperser design for coded aperture snapshot spectral imaging. Applied optics, 47(10), B44-B51.
+% Wang, L., Xiong, Z., Gao, D., Shi, G., & Wu, F. (2015). Dual-camera design for coded aperture snapshot spectral imaging. Applied optics, 54(4), 848-858.
+% Yu, Z., Liu, D., Cheng, L., Meng, Z., Zhao, Z., Yuan, X., & Xu, K. (2022). Deep learning enabled reflective coded aperture snapshot spectral imaging. Optics Express, 30(26), 46822-46837.
+% Huete, A.R., 1988. A soil-adjusted vegetation index (SAVI). Remote sensing of environment, 25(3), pp.295-309.
+% Wang, Y.M., Chen, H.R., Chen, J.Y., Wang, H., Xing, Z. and Zhang, Z., 2021. Comparation of rice yield estimation model combining spectral index screening method and statistical regression algorithm. Trans. Chin. Soc. Agric. Eng, 37(21), pp.208-216.
+% Su, J., Yi, D., Liu, C., Guo, L., & Chen, W., 2017. Dimension Reduction Aided Hyperspectral Image Classification with a Small-sized Training Dataset: Experimental Comparisons. Sensors (Basel, Switzerland), 17. https://doi.org/10.3390/s17122726.
+% Ferrari, C., Foca, G., & Ulrici, A., 2013. Handling large datasets of hyperspectral images: reducing data size without loss of useful information.. Analytica chimica acta, 802, pp. 29-39 . https://doi.org/10.1016/j.aca.2013.10.009.
+% Palmer, A., Bunch, J., & Styles, I., 2013. Randomized approximation methods for the efficient compression and analysis of hyperspectral data.. Analytical chemistry, 85 10, pp. 5078-86 . https://doi.org/10.1021/ac400184g.
+% Nascimento, J., V'estias, M., & Duarte, R., 2018. Hyperspectral compressive sensing: a low-power consumption approach. , 10792. https://doi.org/10.1117/12.2326118.
+% Miao, X., Yuan, X., Pu, Y., & Athitsos, V. (2019). l-net: Reconstruct hyperspectral images from a snapshot measurement. In Proceedings of the IEEE/CVF International Conference on Computer Vision (pp. 4059-4069).
+% Loshchilov, I. (2017). Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101.
+% Xu, J., Li, Z., Du, B., Zhang, M., & Liu, J., 2020. Reluplex made more practical: Leaky ReLU. 2020 IEEE Symposium on Computers and Communications (ISCC), pp. 1-7. https://doi.org/10.1109/ISCC50000.2020.9219587.
+
+\end{document}
+\endinput
+%%
+%% End of file `elsarticle-template-num.tex'.

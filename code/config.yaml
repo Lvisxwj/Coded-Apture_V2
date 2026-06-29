@@ -1,0 +1,105 @@
+
+# ============================================================
+# 植被指数预测 — 配置文件
+# ============================================================
+# 模型选择、GPU、checkpoint 路径在 cfg.py 中配置
+# 本文件放路径、数据参数、训练超参数、模型超参数
+#
+# 用法：
+#   python train.py                    # 读 cfg.py + config.yaml
+#   python test.py                     # 同上
+#   python viz.py                      # 读 viz.py 顶部的 TEST_RESULT_DIR
+# ============================================================
+
+# ── 路径 ──
+paths:
+  data_root: /data5/SCI/vegindex/data
+  hsi_dir: HSI
+  label_dir: label
+  mask_dir: mask
+  output_dir: /data5/SCI/vegindex/code/result/model
+  test_dir: /data5/SCI/vegindex/code/result/test
+
+# ── 数据 ──
+data:
+  num_bands: 84
+  num_indices: 32
+  spatial_size: 256
+  measurement_width: 422
+  step: 2
+  measurement_scale: 0.9
+  train_range: [1, 200]
+  test_range: [201, 252]
+  # Converted NPY files were renumbered continuously from 1 to 252.
+  # The raw-MAT corrupt IDs [15, 43, 109] must not be skipped here.
+  skip_ids: []
+  augmentation:
+    random_rotation: true
+    horizontal_flip: true
+    vertical_flip: true
+
+# ── 训练 ──
+train:
+  batch_size: 1
+  max_epoch: 300
+  train_set_size: 2560
+  seed: 42
+  lr: 0.0001
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  milestones: [200, 400]
+  gamma: 0.5
+  gradient_clip: 0.2
+  amp: false
+  compile: false
+  lazy_load: false
+  save_interval: 50
+  log_interval: 50
+  num_workers: 4
+
+# ── 测试 ──
+test:
+  batch_size: 1
+  num_workers: 8
+
+# ── 各模型超参数 ──
+mst_mamba:
+  dim: 64
+  stage: 3
+  num_blocks: [2, 2, 2]
+  d_state: 16
+  expand_factor: 2
+  d_conv: 4
+  dt_rank: auto
+  pscan_parallel: true
+  mask_fusion: input_mul
+  stage_reductions: null
+
+wpo3d:
+  dim: 64
+  stage: 3
+  num_blocks: [2, 2, 2]
+
+restormer:
+  dim: 48
+  num_heads: [1, 2, 4, 8]
+  num_blocks: [4, 6, 6, 8]
+  ffn_expansion_factor: 2.66
+
+dhm:
+  dim: 64
+  stage: 3
+  num_blocks: [2, 2, 2]
+  window_size: 8
+  d_state: 16
+  expand_factor: 2
+  d_conv: 4
+
+ifgnet:
+  dim_spec: 32
+  dim_idx: 48
+  stage: 3
+  num_blocks_spec: [1, 1, 1]
+  num_blocks_idx: [2, 2, 2]
+  formula_loss_warmup: 100
+  formula_loss_weight: 0.1

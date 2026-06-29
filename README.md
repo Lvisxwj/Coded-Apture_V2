@@ -1,27 +1,32 @@
-# Coded-Apture_V2
+# CASSI-VegIndex
 
-To QXX, my love: 
+Direct multi-index vegetation estimation from CASSI compressed measurements.
 
-To the world you may be one person, but to one person you are the world. I wish things couldve been different. I love you.
+The project maps a two-dimensional CASSI measurement to 32 dense vegetation-index
+maps without requiring full hyperspectral reconstruction as an intermediate task.
+It currently includes a Restormer placeholder baseline and four candidate models:
+MST-Mamba, WPO3D, DHM, and IFGNet.
 
+## Repository layout
 
-## You know today I dreamt about you
-In it, you were a team leader of a troop. Maybe it's because HDU is currently doing military training for those first-years. Their blue uniforms reminded me of the very first time our eyes met. There you stood next to me, and for the very first time in college, I felt nervous to speak.
+- `code/` -- active training, testing, visualization, models, and technical reports.
+- `latex/zh.tex` -- Chinese teacher-review manuscript.
+- `latex/eng.tex` -- preserved English draft snapshot.
+- `latex/logic.md`, `algorithm.md`, `citation.md` -- manuscript support notes.
 
-Anyway, we were apparently at war against monsters and some sort of invaders. We had this gear like in Fallout, but instead of a fusion core, it ran on some kind of blood. And it was kind of a kamikaze power armor that both enabled you and destroyed you as time went on. I know exactly why it looked like a suit from Fallout—because our first summer vacation I focused too much on it and ignored you sometimes. Now the taste of regret stinks all over me.
+Large datasets, checkpoints, experiment outputs, source backups, historical code,
+and third-party reference implementations are intentionally excluded from Git.
+They remain on the research server under `/data5/SCI/vegindex`.
 
-There I saw you leading from the front with your troop, all those fresh new faces with a tint of naive grinning on them. I thought to myself, you were an excellent "Soldier" and were in the best team that was meant to go all out on the last day. It made sense that you could lead. But I just hated to see you on the front. I imagined one day you might never come back.
+## Current status
 
-And that first glance at you made my heart pound again, veins rushing, feeling light-headed and too anxious to sit or eat. So I rushed past you and your troop, into the hospital, even tripped over while dodging your eyes, injected the blood, and took up the armor. Every time, I beat it to face the danger before you, no matter what the cost.
+- 252 paired HSI/index scenes and one physical mask are available server-side.
+- Restormer completed 300 training epochs; its epoch-300 file is a
+  training-loss-selected placeholder, not a validation-selected best model.
+- All five model interfaces pass a CPU-only synthetic forward smoke test.
+- Legacy quantitative test results are invalid because the former test script
+  normalized model outputs twice; corrected GPU evaluation is still pending.
 
-Gradually, you started talking to me, your face innocent just like before. You tried to make conversation, but every time my sadness tethered my tongue. I tried to respond, but I didn't. Maybe it's the old me acting again, trying to control you, make you feel guilty and sad for me.
-
-You said you wanted to get back together. I wanted to say yes, I so wanted to say yes, but I knew you like novels and those plots, so I said, "Only after this country is safe, then we'll be together again." Even though I couldn't give a fuck about others. They can bleed and suffer as much as they want; it concerns me not. I just want you.
-
-Then lights went dim, ashes rose on the wind. Among piles of bodies, there I was, badly wounded. In the smoke, I wished you would come, holding me in your arms like how Dany held Jorah Mormont.
-
-But when it ceased, there was no one. You didn't show up, as if what we had never existed.
-
-### Momories are but regrets, they just keep coming back. Each time a new scar, that drags me deeper and closer to my grave.
-
-I miss you babe. It has been too, too long.
+See [the code README](code/README.md),
+[the evaluation report](code/docs/evaluation_report.md), and
+[the directory map](code/docs/directory_map.md) for details.

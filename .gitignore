@@ -1,0 +1,56 @@
+# Dataset and experiment outputs
+/data/
+/backups/
+/code/result/
+/code/artifacts/
+
+# Historical and third-party material retained locally/server-side only
+/code/reference/
+/code/archive/2026-06-29_migration/legacy_code/
+/code/archive/2026-06-29_migration/history_docs/
+/code/archive/2026-06-29_migration/logs/
+/code/archive/2026-06-29_migration/invalid_test_results/restormer/
+
+# Local agent/editor settings and task notes
+/.agents/
+/.codex/
+/code/.claude/
+/forcodex.md
+
+# Historical manuscript bundles and templates
+/latex/Elsarticle/
+/latex/Template/
+/latex/retired/
+/latex/build/
+/latex/NOTE.tex
+/latex/Note.md
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Model/data binaries
+*.pth
+*.pt
+*.ckpt
+*.npy
+*.npz
+*.mat
+
+# LaTeX intermediates
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.spl
+*.synctex.gz
+*.xdv
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
